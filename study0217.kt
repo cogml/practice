@@ -1,50 +1,70 @@
 fun main() {
-    //í™•ì¥ í•¨ìˆ˜
+    //È®Àå ÇÔ¼ö
     val source = "Hello World!"
     val target = "Kotlin"
-    println(source.LongString (target)) //source <= í™•ì¥ëŒ€ìƒ(LongStringí•¨ìˆ˜ì˜ thisê°€ ëœë‹¤.)
+    println(source.LongString (target)) //source <= È®Àå´ë»ó(LongStringÇÔ¼öÀÇ this°¡ µÈ´Ù.)
 
 
-    //ì¤‘ìœ„ í•¨ìˆ˜
-    val multi = 3 multiply 10 //ì¼ë°˜ì ì¸ í‘œí˜„ë²•: val multi = 3.multiply(10) => ì¤‘ìœ„ í‘œí˜„ë²•: .ê³¼ () ìƒëµ
+    //ÁßÀ§ ÇÔ¼ö
+    val multi = 3 multiply 10 //ÀÏ¹İÀûÀÎ Ç¥Çö¹ı: val multi = 3.multiply(10) => ÁßÀ§ Ç¥Çö¹ı: .°ú () »ı·«
     println("multi: $multi")
 
 
-    //forEachë¬¸ ????
-    val numList = arrayListOf(1,2,3,4,5,6) //ì‹¤í–‰ê²°ê³¼: 1 2 3 4 5 6
-    numList.forEach {i -> println(i)} //ë³€ìˆ˜ iì— ê°’ì„ ì§€ì •
-    numList.forEach{println(it)} //ì•”ë¬µì ì¸ ë°©ë²•: ití‚¤ì›Œë“œ ë³€ìˆ˜ ì‚¬ìš©
-    //forEachì˜ ì •ì˜: ë°˜ë³µì„ ëŒë¦¬ë©´ì„œ ê° ì›ì†Œì— ëŒ€í•´ ì…ë ¥ê°’ìœ¼ë¡œ ë°›ì€ actionì„ ìˆ˜í–‰í•˜ë„ë¡ ë§Œë“œëŠ” í™•ì¥í•¨ìˆ˜. Unitì„ return
-    //forEachëŠ” continueì™€ breakë¬¸ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ë‹¤. breakë¥¼ í•˜ë ¤ë©´ return@runì„ ì‚¬ìš©í•˜ê³  continueë¥¼ í•˜ë ¤ë©´ return@forEach
+    //forEach¹® ????
+    val numList = arrayListOf(1,2,3,4,5,6) //½ÇÇà°á°ú: 1 2 3 4 5 6
+    numList.forEach {i -> println(i)} //º¯¼ö i¿¡ °ªÀ» ÁöÁ¤
+    numList.forEach{println(it)} //¾Ï¹¬ÀûÀÎ ¹æ¹ı: itÅ°¿öµå º¯¼ö »ç¿ë
+    //forEachÀÇ Á¤ÀÇ: ¹İº¹À» µ¹¸®¸é¼­ °¢ ¿ø¼Ò¿¡ ´ëÇØ ÀÔ·Â°ªÀ¸·Î ¹ŞÀº actionÀ» ¼öÇàÇÏµµ·Ï ¸¸µå´Â È®ÀåÇÔ¼ö. UnitÀ» return
+    //forEach´Â continue¿Í break¹®À» »ç¿ëÇÒ ¼ö ¾ø´Ù. break¸¦ ÇÏ·Á¸é return@runÀ» »ç¿ëÇÏ°í continue¸¦ ÇÏ·Á¸é return@forEach
+
+
+    //Bclass
+    val B = Bclass("ÇÑ¼®ºÀ", "±¤ÁÖ", 20)
+    println(B.name)
 }
 
 
-//String í´ë˜ìŠ¤ì— í™•ì¥ í•¨ìˆ˜ë¥¼ ì¶”ê°€í•´ ë³´ì
+//String Å¬·¡½º¿¡ È®Àå ÇÔ¼ö¸¦ Ãß°¡ÇØ º¸ÀÚ
 fun String.LongString(target: String): String = if(this.length > target.length) this else target
-//thisì™€ targetì˜ ë¬¸ì ê¸¸ì´ë¥¼ ë¹„êµí•´ì„œ ë” ê¸´ ê¸¸ì´ë¥¼ ê°€ì§„ ê°’ì„ ì¶œë ¥í•˜ëŠ” "í™•ì¥ í•¨ìˆ˜"
-// *í™•ì¥í•˜ë ¤ëŠ” ëŒ€ìƒì— ë™ì¼í•œ ì´ë¦„ì˜ ë©¤ë²„ í•¨ìˆ˜ë‚˜ ë©”ì„œë“œê°€ ì¡´ì¬í•œë‹¤ë©´ ë©¤ë²„ ë©”ì„œë“œê°€ ìš°ì„ ìœ¼ë¡œ í˜¸ì¶œëœë‹¤.
+//this¿Í targetÀÇ ¹®ÀÚ ±æÀÌ¸¦ ºñ±³ÇØ¼­ ´õ ±ä ±æÀÌ¸¦ °¡Áø °ªÀ» Ãâ·ÂÇÏ´Â "È®Àå ÇÔ¼ö"
+// *È®ÀåÇÏ·Á´Â ´ë»ó¿¡ µ¿ÀÏÇÑ ÀÌ¸§ÀÇ ¸â¹ö ÇÔ¼ö³ª ¸Ş¼­µå°¡ Á¸ÀçÇÑ´Ù¸é ¸â¹ö ¸Ş¼­µå°¡ ¿ì¼±À¸·Î È£ÃâµÈ´Ù.
 
 
-/*ì¤‘ìœ„ í•¨ìˆ˜ì˜ ì¡°ê±´: 1. ë©¤ë²„ ë©”ì„œë“œ ë˜ëŠ” í™•ì¥ í•¨ìˆ˜ì—¬ì•¼ í•œë‹¤. 2. í•˜ë‚˜ì˜ ë§¤ê°œë³€ìˆ˜ë¥¼ ê°€ì ¸ì•¼í•œë‹¤. 3. infix í‚¤ì›Œë“œë¡œ ì •ì˜í•œë‹¤.
-í´ë˜ìŠ¤ ë©¤ë²„ í˜¸ì¶œ ì‹œ ì‚¬ìš©í•˜ëŠ” ì (.)ì„ ìƒëµ, í•¨ìˆ˜ ë’¤ì— ì†Œê´„í˜¸x*/
-infix fun Int.multiply (vararg x: Int) : Int { //ê°€ë³€ì¸ì vararg: ë§¤ê°œë³€ìˆ˜ì˜ ê°œìˆ˜ê°€ ê³ ì •ë˜ì§€ ì•ŠìŒ
+/*ÁßÀ§ ÇÔ¼öÀÇ Á¶°Ç: 1. ¸â¹ö ¸Ş¼­µå ¶Ç´Â È®Àå ÇÔ¼ö¿©¾ß ÇÑ´Ù. 2. ÇÏ³ªÀÇ ¸Å°³º¯¼ö¸¦ °¡Á®¾ßÇÑ´Ù. 3. infix Å°¿öµå·Î Á¤ÀÇÇÑ´Ù.
+Å¬·¡½º ¸â¹ö È£Ãâ ½Ã »ç¿ëÇÏ´Â Á¡(.)À» »ı·«, ÇÔ¼ö µÚ¿¡ ¼Ò°ıÈ£x*/
+infix fun Int.multiply (vararg x: Int) : Int { //°¡º¯ÀÎÀÚ vararg: ¸Å°³º¯¼öÀÇ °³¼ö°¡ °íÁ¤µÇÁö ¾ÊÀ½
     return this * x
 }
 
 
-//Kotlinìœ¼ë¡œ í´ë˜ìŠ¤ ì„ ì–¸í•˜ê¸°: ë¨¼ì €, ë©¤ë²„ í”„ë¡œí¼í‹°(ë³€ìˆ˜)ì™€ ìƒì„±ìë¥¼ ë™ì‹œì— ì„ ì–¸í•œë‹¤.
-//varì´ë‚˜ valì„ ë¶™ì—¬ ìƒì„±ì ë§¤ê°œë³€ìˆ˜ ì„œì–¸ê³¼ ë™ì‹œì— ë³€ìˆ˜ë¥¼ ì„ ì–¸í•œ ê²ƒê³¼ ê°™ë‹¤.
+//KotlinÀ¸·Î Å¬·¡½º ¼±¾ğÇÏ±â: ¸ÕÀú, ¸â¹ö ÇÁ·ÎÆÛÆ¼(º¯¼ö)¿Í »ı¼ºÀÚ¸¦ µ¿½Ã¿¡ ¼±¾ğÇÑ´Ù.
+//varÀÌ³ª valÀ» ºÙ¿© »ı¼ºÀÚ ¸Å°³º¯¼ö ¼­¾ğ°ú µ¿½Ã¿¡ º¯¼ö¸¦ ¼±¾ğÇÑ °Í°ú °°´Ù.
 class Aclass(val name: String, var address: String, var age: Int = 22)
 
-class Bclass (name: String, address: String, age: Int) { //varì´ë‚˜ valì„ ë¶™ì´ì§€ ì•Šìœ¼ë©´ ìƒì„±ì ë§¤ê°œë³€ìˆ˜ë§Œ ì„ ì–¸í•œ ê²ƒì´ë‹¤.
-    var name: String = name//name í”„ë¡œí¼í‹°ëŠ” ì„ ì–¸ê³¼ ë™ì‹œì— ì´ˆê¸°í™” êµ¬ë¬¸ê¹Œì§€ í•¨ê»˜ ê¸°ìˆ í•˜ì˜€ë‹¤.
-    var address: String
-    var age: Int //ë”°ë¡œ ë©¤ë²„ í”„ë¡œí¼í‹°(ë³€ìˆ˜)ë¥¼ ì„ ì–¸í•´ì¤€ë‹¤.
+class Bclass (name: String, address: String, age: Int) { //varÀÌ³ª valÀ» ºÙÀÌÁö ¾ÊÀ¸¸é »ı¼ºÀÚ ¸Å°³º¯¼ö¸¸ ¼±¾ğÇÑ °ÍÀÌ´Ù.
+    var name: String = name//name ÇÁ·ÎÆÛÆ¼´Â ¼±¾ğ°ú µ¿½Ã¿¡ ÃÊ±âÈ­ ±¸¹®±îÁö ÇÔ²² ±â¼úÇÏ¿´´Ù. init¿¡¼­ ÇØÁÖ°Å³ª ¿©±â¼­ ÇØÁÖ°Å³ª(¾ÈÇÏ¸é ¿À·ù³²)
+    var address1: String //²À »ı¼ºÀÚ ¸Å°³º¯¼ö¶û º¯¼ö¸íÀÌ °°À» ÇÊ¿ä´Â ¾ø´Ù!!
+    var age: Int //µû·Î ¸â¹ö ÇÁ·ÎÆÛÆ¼(º¯¼ö)¸¦ ¼±¾ğÇØÁØ´Ù.
     
-    init { //init(ëœ»: ì´ˆê¸°í™”)ë¸”ëŸ­ì„ í†µí•´ ë©¤ë²„ í”„ë¡œí¼í‹°(ë³€ìˆ˜)ë¥¼ ì´ˆê¸°í™” í•´ì£¼ì–´ì•¼ í•œë‹¤. ????
-        this.address = address
+    init { //init(¶æ: ÃÊ±âÈ­)ºí·°À» ÅëÇØ ¸â¹ö ÇÁ·ÎÆÛÆ¼(º¯¼ö)¸¦ ÃÊ±âÈ­ ÇØÁÖ¾î¾ß ÇÑ´Ù.
+        this.address1 = address
         this.age = age
     }
 }
 
-// *Kotlinì—ì„œ í”„ë¡œí¼í‹°ë€? ë©¤ë²„ ë³€ìˆ˜ë¥¼ ë§í•˜ì§€ë§Œ setter/getterë¥¼ ë”°ë¡œ ì„ ì–¸í•˜ì§€ ì•Šì•„ë„ ê¸°ë³¸ì ìœ¼ë¡œ ìƒì„± ëœë‹¤.
+// *Kotlin¿¡¼­ ÇÁ·ÎÆÛÆ¼¶õ? ¸â¹ö º¯¼ö¸¦ ¸»ÇÏÁö¸¸ setter/getter¸¦ µû·Î ¼±¾ğÇÏÁö ¾Ê¾Æµµ ±âº»ÀûÀ¸·Î »ı¼º µÈ´Ù.
+class Cclass(name: String, address: String, age: Int) {
+    var name: String
+    var address: String
+    get() = "$field Æ¯º°½Ã"
+    set (address) {
+        field = "$address Æ¯º°½Ã"
+    }
+    var age: Int
+    
+    init{
+        this.name = name
+        this.address = address
+        this.age = age
+    }
+}
