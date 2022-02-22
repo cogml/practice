@@ -1,4 +1,24 @@
 fun main() {
+    val stringvalue = """multiline
+                        string
+                        use""" //" "를 세번 써서 여러줄 입력가능
+
+    var number = 0
+    while(number < 5){ //while문
+        println(number++)
+    }
+
+    do{ //do while문 : while문과 선후관계가 다르다! 무조건 한번은 실행
+        println(number++)
+    } while(number < 5)
+
+    loop@for (i in 0..9) { //다중 반복문에서 break, continue사용: @loop 붙이기
+        for (j in 0..9){
+            if(i == 0 && j ==3) break@loop
+            println("i: $i, j: $j")
+        }
+    }
+    
     //-----람다함수 : 여러 구문의 사용-----
     val c: (String) -> Int = {str ->
         println("$str 람다함수")
@@ -127,6 +147,53 @@ fun main() {
     val(over98, under98) = personlist.partition {it.birth > 1998} //partion을 통해 birth가 98년도 이전, 이후로 나눈다
     println(over98)
     println(under98)
+
+    println(" ")
+
+    //object 키워드
+    println("------Object------")
+    println(Counter.count) //count값 출력해보자
+
+    Counter.countUp()//countUp함수를 실행한 후 출력해보자
+    println(Counter.count)
+
+    Counter.clear()//clear함수를 실행한 후 출력해보자
+    println(Counter.count)
+
+
+    println(StaticClass.name) //object이름에 직접 참조연산자를 붙여 사용
+    println(StaticClass.isAdult())
+
+    println(" ")
+    //Companion Object
+    println("------Companion Object-------")
+    var a = FoodPoll("한식")
+    var b = FoodPoll("중식")
+
+    a.vote()
+    b.vote()
+    a.vote() //a에 2번, b에 1번 투표
+
+    println("${a.name} : ${a.count}")
+    println("${b.name} : ${b.count}")
+    println("총계: ${FoodPoll.total}")
+}
+
+
+//클래스의 상속 (open키워드 사용!!!)
+/*상속 규칙: 
+1. 서브 클래스는 수퍼 클래스에 존재하는 속성과 같은 이름의 속성을 가질 수 없다
+2. 서브 클래스가 생성될 때는 수퍼클래스의 생성자까지 호출해주어야 한다*/
+open class Animal (var name: String, var age: Int, var type: String){
+    fun introduce() {
+        println("이름: ${name}, 나이: ${age}, 종류: ${type}")
+    }
+}
+
+class Dog(name: String, age: Int) : Animal(name, age, "개"){//Animal class를 상속
+    fun color(){
+        println("white")
+    }
 }
 
 data class WHAT(val name: String, val age: Int)
@@ -134,5 +201,36 @@ data class What(var name: String, var age : Int)
 class Book(var name: String, var price: Int){
     fun discount(){
         price -= 2000
+    }
+}
+
+object Counter { //object 생성자 없이 객체를 직접 만들어낸다.
+    var count = 0
+    fun countUp() {
+        count++
+    }
+    fun clear(){
+        count = 0
+    }
+    //object는 최초 사용시 자동으로 생성되며 코드 전체에서 공용으로 사용된다.
+}
+
+object StaticClass {
+    var name = "이채희"
+    var age = 23
+
+    fun getName() = { "$name (Chehhy)" }
+    fun isAdult() = age > 19 //Boolean, 단일 표현식 함수로 나타냄ㅌ
+}
+
+//기존 Class안에도 object를 만들 수 있다!? => Companion Object
+class FoodPoll (val name: String) {
+    companion object { //클래스 안에서 사용할 수 있는 Object
+        var total = 0
+    }
+    var count = 0
+    fun vote() {
+        total++
+        count++
     }
 }
