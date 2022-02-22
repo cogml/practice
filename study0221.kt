@@ -2,7 +2,7 @@ import java.util.*
 
 fun main(){
     //Scanner => 문자열 입력받기
-    val sc = Scanner(System.`in`) // backtick(`)는 키보드 가장 왼쪽 위에 물결(~) 이랑 같이 있음
+    val sc = Scanner(System.`in`) // backtick(`)는 키보드 가장 왼쪽 위에 물결~ 이랑 같이 있음
     val str = sc.nextLine()
     println("입력값은 $str")
     
