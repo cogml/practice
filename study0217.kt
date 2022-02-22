@@ -21,6 +21,8 @@ fun main() {
     //Bclass
     val B = Bclass("ÇÑ¼®ºÀ", "±¤ÁÖ", 20)
     println(B.name)
+
+    val C =Cclass("È«±æµ¿", "¼­¿ï", 30)
 }
 
 

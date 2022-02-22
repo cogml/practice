@@ -15,7 +15,7 @@ fun main() {
     //lst리스트 값을 인쇄하자
     for(i in 0..lst.size-1){
         print("${lst[i]} ")
-        if (i%2==1){
+        if (i%2==1){ //
             println(" ")
         }
     }
