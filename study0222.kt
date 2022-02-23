@@ -25,6 +25,9 @@ fun main() {
         println("여러구문 사용")
         3 //마지막 구문에 결과값이 반환된다.
         }
+
+    println(c) //(Kotlin.String) -> Kotlin.Int가 출력된다.
+    val ccc = c 
     //파라미터가 하나인 람다함수 : it 사용
     val d: (String) ->Unit = {println("$it 람다함수")}
 
@@ -35,7 +38,7 @@ fun main() {
     var w1: WHAT? = null //WHAT은 데이터 클래스
     val v1 = w1?.let { //w1이 null일 경우 람다식 수행x
         println(it)
-    } ?: "Known"
+    } ?: "Known" //null이면 "Known"이 출력
     println(v1)
 
     var ww1: WHAT? = WHAT("Let", 20)
@@ -53,14 +56,14 @@ fun main() {
 
     var ww2: WHAT? = WHAT("Also", 20)
     val vv2 = ww2?.also { //also는 받은 객체를 <it>으로 받아 사용
-        println(it) //받은 객체를 그대로 반환
+        println(it) //받은 객체를 그대로 반환 : WHAT(name=Also, age=20)
     } ?: "Known"
     println(vv2)
 
     //(3) apply //받은 객체를 람다 함수 내부에서 it이 아닌 this로 처리, 받은 객체 그대로 반환
     println("<<apply>>")
-    val w3 = What("Apply", 10) //w3 = (Apply, 10)
-    val r3 = w3.apply { //apply에 의해 r3 = w3 = (A, 20)
+    val w3 = What("Apply", 10) //w3 = (name=Apply, age=10)
+    val r3 = w3.apply { //apply에 의해 r3 = w3 = (name=A, age=20)
         name = "A"
         age = 20
     }
@@ -104,13 +107,19 @@ fun main() {
         discount()
     }
 
+    //???????????????????also: apply와 같은 기능, it을 통해 인스턴스를 사용
+    // var book = Book("KotlinBook", 9000).also { 
+    //     name = "[초특가]" + name //it.name???????
+    //     discount()
+    // }
+
+
     //run : apply와 달리 마지막 구문에 결과값을 반환
     println("-----run-----")
     book.run{
         println("상품명: ${name}, 가격: ${price}원") //discount(할인)된 가격으로 출력됨
     } //※ price변수: Book클래스보다 main의 변수를 우선시함!!! => also, let사용
 
-    //also: apply와 같은 기능, it을 통해 인스턴스를 사용
     //let: run과 같은 기능(with랑도 같은 기능), it을 통해 인스턴스를 사용
     //also와 let을 사용하는 이유: 같은 이름의 변수나 함수가 'scope 바깥에 중복'된 경우에 혼란을 방지
     println("-----let-----")

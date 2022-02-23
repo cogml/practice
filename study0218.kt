@@ -5,7 +5,7 @@ fun main(){
 
     val jenny = Age()
     jenny.actualAge = 15
-    jenny.age = 15
+    jenny.age = 15s
     println("jenny actual age: ${jenny.actualAge}")
     println("jenny set age: ${jenny.age}")
 

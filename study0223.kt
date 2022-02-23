@@ -1,4 +1,9 @@
 fun main(){
+    //withIndex()
+    for((index, value) in lst.withIndex()) { //index와 value를 함께 돌림
+        println("$index : $value")
+    }
+    
     //Override
     println("------오버라이드------")
     val child = Child()
@@ -140,7 +145,7 @@ class Outer {
         }
 
         fun introduceOuter() {
-            println(this@Outer.text) //Outer클래스와 Inner클래스에 같은 이름의 속성이나 클래스가 있을때 this@Outer클래스명 으로 참조
+            println(this@Outer.text)//Outer클래스와 Inner클래스에 같은 이름의 속성이나 클래스가 있을때 this@Outer클래스명 으로 참조
         }
     }
 }

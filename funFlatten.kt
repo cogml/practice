@@ -13,16 +13,15 @@ fun Flatten(lst: MutableList<Any>) : MutableList<Any> { //재귀함수로 구현
     return if(count == 0){ //count = 0일 때 까지(count는 정수형이아닌 원소(즉, 배열 형태인 원소)의 개수)
         result_lst
     } 
-    else{ 
+    else{
         count = 0
-        for(i in 0..size-1){
-            if(lst[i] is Int){ //lst[i]가 정수라면 
-                result_lst.add(lst[i]) 
+        for((index,value) in lst.withIndex()){ // for문에서 0..size-1로 받는다면 값은 인덱스가 아닌 value값(item)이다.
+            if(lst[index] is Int){ //item이 정수라면 
+                result_lst.add(lst[index]) 
             }
             else{
                 count++
-                var sub_lst : MutableList<Any> = mutableListOf()
-                sub_lst.add(lst[i])
+                var sub_lst = lst[index] 
                 Flatten(sub_lst)
             }
         }
